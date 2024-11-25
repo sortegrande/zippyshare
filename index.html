@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Page</title>
+    <title>Gerenciador de Downloads</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,61 +12,114 @@
             padding: 0;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 50px auto;
             background: #fff;
             border: 1px solid #ddd;
-            padding: 20px;
+            padding: 30px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .header {
             background: #ffcc00;
             color: #333;
-            padding: 10px;
+            padding: 15px;
             text-align: center;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
         }
         .content {
             text-align: center;
-            padding: 20px;
+            padding: 30px 20px;
         }
-        .content p {
-            font-size: 18px;
-            margin-bottom: 20px;
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
         }
-        .download-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #339933;
-            color: #fff;
-            text-decoration: none;
+        .button {
+            width: 200px;
+            height: 80px;
             font-size: 20px;
-            border-radius: 5px;
-            transition: background 0.3s;
+            font-weight: bold;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, opacity 0.3s;
         }
-        .download-button:hover {
+        .button-green {
+            background: #339933;
+            color: white;
+        }
+        .button-green:hover {
             background: #287a2e;
         }
+        .button-red {
+            background: #cc3333;
+            color: white;
+        }
+        .button-red[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .message {
+            font-size: 16px;
+            text-align: justify;
+            margin: 20px;
+            color: #555;
+        }
         .footer {
-            margin-top: 20px;
             font-size: 14px;
             color: #555;
             text-align: center;
+            margin-top: 20px;
         }
     </style>
+    <script>
+        function startCountdown(button) {
+            let timeLeft = 50 * 60; // 50 minutes in seconds
+            const interval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                button.innerText = `Aguarde ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                timeLeft--;
+
+                if (timeLeft < 0) {
+                    clearInterval(interval);
+                    button.disabled = false;
+                    button.innerText = 'Baixar Devagar';
+                }
+            }, 1000);
+
+            button.disabled = true;
+        }
+
+        function handleFastDownload() {
+            window.location.href = 'https://example-payment-link.com';
+        }
+    </script>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            Zippy Download
-        </div>
+        <div class="header">GERENCIADOR DE DOWNLOADS</div>
         <div class="content">
-            <p>Your file is ready for download!</p>
-            <a class="download-button" href="#" download>Download Now</a>
+            <div class="buttons">
+                <button class="button button-green" onclick="handleFastDownload()">Baixar Rápido</button>
+                <button class="button button-red" onclick="startCountdown(this)">Baixar Devagar</button>
+            </div>
+            <div class="message">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet pulvinar erat, 
+                eu hendrerit lacus. Nulla facilisi. Ut at urna vel justo tristique eleifend. In hac 
+                habitasse platea dictumst. Praesent vulputate nibh ut efficitur tempus. Donec 
+                sollicitudin eros neque, vitae posuere risus ultrices sed. Nullam vehicula lorem 
+                ligula, sed ornare justo feugiat a. Cras quis tempor mi. Duis sed sollicitudin ante, 
+                vel vestibulum ipsum. Sed a turpis non libero auctor fermentum. Integer et arcu at 
+                nunc posuere suscipit. Suspendisse potenti. Fusce scelerisque turpis in leo iaculis, 
+                eget consectetur enim gravida. Etiam tristique auctor malesuada. Ut vehicula volutpat 
+                metus, non fermentum ligula tincidunt quis. 
+            </div>
         </div>
         <div class="footer">
-            <p>&copy; 2024 Zippyshare Inspired Layout. All rights reserved.</p>
+            &copy; 2024 Gerenciador de Downloads Inspirado. Todos os direitos reservados.
         </div>
     </div>
 </body>
