@@ -27,6 +27,30 @@
             font-size: 28px;
             font-weight: bold;
         }
+        .table-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .table {
+            width: 100%;
+            max-width: 700px;
+            border: 1.5px solid black;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        .table td {
+            padding: 15px;
+            border: 1.5px solid black;
+        }
+        .table .file-name {
+            color: #555;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .table .label {
+            font-weight: bold;
+        }
         .content {
             text-align: center;
             padding: 30px 20px;
@@ -74,33 +98,21 @@
             margin-top: 20px;
         }
     </style>
-    <script>
-        function startCountdown(button) {
-            let timeLeft = 50 * 60; // 50 minutes in seconds
-            const interval = setInterval(() => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                button.innerText = `Aguarde ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                timeLeft--;
-
-                if (timeLeft < 0) {
-                    clearInterval(interval);
-                    button.disabled = false;
-                    button.innerText = 'Baixar Devagar';
-                }
-            }, 1000);
-
-            button.disabled = true;
-        }
-
-        function handleFastDownload() {
-            window.location.href = 'https://example-payment-link.com';
-        }
-    </script>
 </head>
 <body>
     <div class="container">
         <div class="header">GERENCIADOR DE DOWNLOADS</div>
+        <div class="table-container">
+            <table class="table">
+                <tr>
+                    <td colspan="2" class="file-name">Nome do Arquivo: Meu_arquivo.zip</td>
+                </tr>
+                <tr>
+                    <td class="label">Tamanho</td>
+                    <td>2.5 GB</td>
+                </tr>
+            </table>
+        </div>
         <div class="content">
             <div class="buttons">
                 <button class="button button-green" onclick="handleFastDownload()">Baixar Rápido</button>
